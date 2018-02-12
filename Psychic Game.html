@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic Game</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <body>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="jumbotron">
+            <h1 class="display-3">Psychic Game</h1>
+            <h2>Guess What Letter I Am Thinking Of....</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div id="game">
+
+  </div>
+
+  <script type="text/javascript">
+    
+
+
+
+
+    var computerChoices = ["a", "b", "c","d", "e", "f","g", "h", "i","j", "k", "l","m", "n", "o","p", "q", "r","s", "t", "u","v", "w", "x","y", "z"];
+    var wins = 0;
+    var losses = 0;
+    var guessNumber = 10;
+    var guessList = [];
+
+
+    function startgame(){
+        (guessNumber = 10);
+        (guessList = []);
+    }
+
+    function htmldisplay(guess){
+      var html =
+          "<p>You chose: " + guess + "</p>" +
+          "<p>You Have Chosen: " + guessList +"</p>"+
+          "<p>Wins: " + wins + "</p>" +
+          "<p>Losses: " + losses + "</p>"+
+          "<p>Guesses left: "+ guessNumber + "</p>";
+    document.querySelector("#game").innerHTML = html;
+    }
+
+    function replay(guess){
+      var again = prompt("Do You Want To Play Again?")
+      if (again[0].toLowerCase() == "y"){
+        startgame();
+        htmldisplay(guess);
+      }
+      if(again[0].toLowerCase()== "n"){
+        ("");
+      } 
+    }
+
+    document.onkeyup = function(event) {
+
+      var userGuess = event.key;
+      guessList.push(userGuess);
+
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        console.log(computerGuess);
+
+        if (userGuess === computerGuess){
+          wins ++;
+          replay(userGuess)
+
+        }
+        else if (guessNumber >= 0) {
+          guessNumber --;
+              
+        }
+        if ( guessNumber === 0){
+          losses ++; 
+          replay(userGuess)
+
+        }
+
+        htmldisplay(userGuess);
+
+      
+
+
+
+
+
+        
+      
+    };
+
+    startgame();
+  </script>
+
+</body>
+
+</html>
